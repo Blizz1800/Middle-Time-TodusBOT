@@ -1,5 +1,5 @@
 from sys import argv
-import dbManager as dbm
+from libs import dbManager as dbm
 
 
 def start_db():
@@ -9,7 +9,7 @@ def start_db():
 
 def start(*argv):
     db = start_db()
-
+    
     db.close()
 
 

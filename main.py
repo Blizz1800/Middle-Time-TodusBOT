@@ -13,7 +13,7 @@ def start_db():
     dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "nombre TEXT NOT NULL", "action INTEGER NOT NULL", "args TEXT NOT NULL", t_name="Acciones")
     dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "nombre TEXT NOT NULL", "desc TEXT NOT NULL", "action INTEGER NOT NULL", t_name="Items")
     dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "nombre TEXT NOT NULL", "dueño INTEGER NOT NULL",  "casas INTEGER NOT NULL", "jugadores INTEGER NOT NULL", "special INTEGER NOT NULL", t_name="Lugares")
-
+    dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "items TEXT NOT NULL", "money INTEGER NOT NULL", "cabeza INTEGER NOT NULL", "pecho INTEGER NOT NULL", "muñecas INTEGER NOT NULL", "piernas INTEGER NOT NULL", "zapatos INTEGER NOT NULL", "mano_izq INTEGER NOT NULL", "mano_der INTEGER NOT NULL", "cuello INTEGER NOT NULL", "flechas INTEGER NOT NULL", t_name="Inventory")
     return db
 
 

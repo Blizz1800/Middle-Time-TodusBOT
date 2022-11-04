@@ -7,7 +7,7 @@ from libs import  pyresponder as pyr
 
 
 load_dotenv()
-PORT = getenv("PORT")
+PORT = int(getenv("PORT"))
 
 
 def start_db():
@@ -24,10 +24,16 @@ def start_db():
     return db
 
 
+def c_start(data):
+    pyr.addResponse("Hola Mundo!")
+
+
 def start(*argv):
     db = start_db()
     # put more code here
-    pyr.server_start(("127.0.0.1", PORT))
+    pyr.addTrigguer("start", c_start)
+    strartAt = ("127.0.0.1", PORT)
+    pyr.server_start(strartAt)
     db.close()
 
 

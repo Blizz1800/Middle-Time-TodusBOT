@@ -1,6 +1,13 @@
 from sys import argv
+from os import getenv
+from dotenv import load_dotenv
 
 from libs import dbManager as dbm
+from libs import  pyresponder as pyr
+
+
+load_dotenv()
+PORT = getenv("PORT")
 
 
 def start_db():
@@ -20,6 +27,7 @@ def start_db():
 def start(*argv):
     db = start_db()
     # put more code here
+    pyr.server_start(("127.0.0.1", PORT))
     db.close()
 
 

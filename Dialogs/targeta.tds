@@ -1,0 +1,13 @@
+<h1>Tarjeta</h1>
+<h3>🏷Nombre: {}{}</h3>
+<ul>
+    <li>🏞Lugar de Nacimiento: {}</li>
+    <li>📖Clase: {}</li>
+    <li>🗓Edad: {}</li>
+    <li>💭Raza: {}</li>
+    <li>👨🏻Padre: {}</li>
+    <li>👩🏻Madre: {}</li>
+    <li>👤Sexo: {}</li>
+    <li>👑Renombre: {}</li>
+    <li>🏕Hogar: {}</li>
+</ul>

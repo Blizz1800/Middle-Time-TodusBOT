@@ -112,7 +112,7 @@ def server_start(startAt=("0.0.0.0", 8000)):
                 client, address = server.accept()
                 reciveInfo(client)
             except KeyboardInterrupt:
-                break
+                server.close()
     else:
         print(
             "need some trigguers\n\nadd them with addTrigguer('trigguer', function, fArgs)")

@@ -27,6 +27,7 @@ def start_db():
 
 def c_start(data:pyr.info):
     resp = "start"
+    file = "start"
     if data.HEAD == "/todus":
         ext = "tds"
     elif data.HEAD == "/whatsapp":

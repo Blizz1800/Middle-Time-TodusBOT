@@ -36,7 +36,7 @@ def c_start(data:pyr.info):
         ext = "raw"
     info = []
     info.append(data.USER)
-    resp = dh.generateDialog(f"./{file}.{ext}", *info)
+    resp = dh.generateDialog(f"./Dialogs/{file}.{ext}", *info)
     pyr.addResponse(resp)
 
 

@@ -62,6 +62,7 @@ def insertData(db, table, rows, *data):
     cur = db.cursor()
     tmp = ""
     tmp2 = ""
+    rows = rows.split(", ")
     if (len(rows) != len(data)):
         print(f"\x1b[1;31mError de longitud de datos para tabla {table}")
         return False
@@ -102,3 +103,13 @@ def getData(db, tabla, row="*", extra: str = None, many=0):
     elif len(content) == 0:
         return None
     return content
+
+
+def updateData(db, tabla, condition, row, value):
+    cur = db.cursor()
+    tp = "'"
+    if type(value) is int:
+        tp = ""
+    query = f"UPDATE {tabla} SET `{row}`={tp}{value}{tp} WHERE {condition}"
+    cur.execute(query)
+    return True

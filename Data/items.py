@@ -3,7 +3,7 @@ from libs import dbManager as dbm
 TABLA = "Items"
 CAMPS = "name, desc, action"
 
-def createItem(db, name:str, desc:str, action:int):
+def createItem(db, name:str, desc:str, action:int = 0):
     if len(getItemByName(db, name)) != 0:       # Si el item ya existe, devuelve su ID
         return getItemByName(db, name)[0][0]
     # Sino lo crea y añade a la base de datos devolviendo su ID

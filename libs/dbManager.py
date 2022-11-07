@@ -93,15 +93,16 @@ def getData(db, tabla, row="*", extra: str = None, many=0):
     cur:sqlite3.Cursor = db.cursor()
     cur.execute(query)
     content = cur.fetchall()
-    if many != 0:
-        data = []
-        for i in range(0, many):
-            data.append(content[i])
-        return data
-    if len(content) == 1:
-        return content[0]
-    elif len(content) == 0:
-        return None
+    if len(content) > 0:
+        if many != 0:
+            data = []
+            for i in range(0, many):
+                data.append(content[i])
+            return data
+        if len(content) == 1:
+            return content[0]
+        elif len(content) == 0:
+            return None
     return content
 
 

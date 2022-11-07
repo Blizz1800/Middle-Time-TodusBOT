@@ -56,7 +56,7 @@ def c_start(data:pyr.info):
 
 
 def createItems(db):
-    Excaliburn = items.createItem(db, name="Excaliburn", desc="Espada sin filo", action=0)
+    Excaliburn = items.createItem(db, name="Excaliburn", desc="Espada sin filo")
 
 
 def start(*argv):

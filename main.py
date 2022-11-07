@@ -17,7 +17,7 @@ def start_db():
     db = dbm.createDatabase()   # Crear la base de datos
     ## <Tablas>
     #   Usuarios
-    dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "title TEXT NOT NULL", "name TEXT NOT NULL", "lnacimiento INTEGER NOT NULL", "edad INTEGER NOT NULL", "raza INTEGER NOT NULL", "padre INTEGER NOT NULL", "madre INTEGER NOT NULL", "sexo INTEGER NOT NULL", "renombre INTEGER NOT NULL", "nivel INTEGER NOT NULL", "vida REAL NOT NULL", "mana REAL NOT NULL", "mvida INTEGER NOT NULL", "mmana INTEGER NOT NULL", "xp REAL NOT NULL", "heridas INTEGER NOT NULL", "bwin INTEGER NOT NULL", "blose INTEGER NOT NULL", "batallas INTEGER NOT NULL", "tierras INTEGER NOT NULL", "clan INTEGER NOT NULL", "home INTEGER NOT NULL", t_name="Usuarios")
+    dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "title TEXT NOT NULL", "name TEXT NOT NULL", "lnacimiento INTEGER NOT NULL", "edad INTEGER NOT NULL", "raza INTEGER NOT NULL", "padre INTEGER NOT NULL", "madre INTEGER NOT NULL", "sexo INTEGER NOT NULL", "renombre INTEGER NOT NULL", "nivel INTEGER NOT NULL", "vida REAL NOT NULL", "mana REAL NOT NULL", "mvida INTEGER NOT NULL", "mmana INTEGER NOT NULL", "xp REAL NOT NULL", "heridas INTEGER NOT NULL", "bwin INTEGER NOT NULL", "blose INTEGER NOT NULL", "batallas INTEGER NOT NULL", "tierras INTEGER NOT NULL", "clan INTEGER NOT NULL", "home INTEGER NOT NULL", "live INTEGER NOT NULL",t_name="Usuarios")
     #   Clanes
     dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "name TEXT NOT NULL", "miembros INTEGER NOT NULL", t_name="Clanes")
     #   Clases
@@ -29,7 +29,7 @@ def start_db():
     #   Acciones
     dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "name TEXT NOT NULL", "action INTEGER NOT NULL", "args TEXT NOT NULL", t_name="Acciones")
     #   Items
-    dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "name TEXT NOT NULL", "desc TEXT NOT NULL", "action INTEGER NOT NULL", t_name="Items")
+    dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "name TEXT NOT NULL", "desc TEXT NOT NULL", "action INTEGER NOT NULL", "FOREIGN KEY(action) REFERENCES Acciones(id)",t_name="Items")
     #   Lugares
     dbm.createTable(db, "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT", "name TEXT NOT NULL", "dueño INTEGER NOT NULL",  "casas INTEGER NOT NULL", "jugadores INTEGER NOT NULL", "special INTEGER NOT NULL", t_name="Lugares")
     #   Inventory

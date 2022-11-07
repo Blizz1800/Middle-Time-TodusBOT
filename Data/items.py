@@ -15,9 +15,9 @@ def getItems(db):
     return dbm.getData(db, TABLA)
 
 
-def getItemByID(db, id:int):
-    return dbm.getData(db, TABLA, extra=f"`id`={id}", many=1)
+def getItemByID(db, id:int, many=1):
+    return dbm.getData(db, TABLA, extra=f"`id`={id}", many=many)
 
 
-def getItemByName(db, name:str):
-    return dbm.getData(db, TABLA, extra=f"`name`='{name}'", many=1)
+def getItemByName(db, name:str, many=1):
+    return dbm.getData(db, TABLA, extra=f"`name`='{name}'", many=many)

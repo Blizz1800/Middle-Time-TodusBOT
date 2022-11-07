@@ -1,3 +1,5 @@
 database.db
 .idea/
 venv/
+Data/__pycache__/
+libs/__pycache__/

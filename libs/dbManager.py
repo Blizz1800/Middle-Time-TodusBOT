@@ -3,6 +3,37 @@ import sqlite3
 tables = []
 
 
+INT = "INTEGER"
+TXT = "TEXT"
+FLOAT = "REAL"
+
+CASCADE = "CASCADE"
+NO_ACTION = "NO ACTION"
+RESTRICT = "RESTRICT"
+SET_NULL = "SET NULL"
+SET_DEF = "SET DEFAULT"
+
+def createCamp(camp, type, default="",null=False, primary=False, ai=False):
+    if default!="":
+        default = f"DEFAULT {default}"
+    if primary: primary = "PRIMARY KEY"
+    else: primary = ""
+    if ai: ai="AUTOINCREMENT"
+    else: ai = ""
+    if not null: null = "NOT NULL"
+    else: null = ""
+    value = f"{camp} {type} {null} {default} {primary} {ai}"
+    return value
+
+
+def makeForeign(camp, refTable, ref, onDelete="", onUpdate=""):
+    if onDelete != "":
+        onDelete = f"ON DELETE {onDelete}"
+    if onUpdate != "":
+        onUpdate = f"ON UPDATE {onUpdate}"
+    value = f"FOREIGN KEY({camp}) REFERENCES {refTable}({ref}) {onDelete} {onUpdate}"
+    return value
+
 def createDatabase(name="database.db") -> sqlite3.Connection:
     '''
     Crea una base de datos en el directorio actual o se conecta a ella.

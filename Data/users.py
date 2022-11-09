@@ -7,3 +7,7 @@ CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, niv
 
 def getUserByID(db, id:int, many=1):
     return dbm.getData(db, TABLA, extra=f"`id`={id}", many=many)
+
+
+def getUserByName(db, name:str, many=1):
+    return dbm.getData(db, TABLA, extra=f"`name`={name}", many=many)

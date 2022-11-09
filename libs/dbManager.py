@@ -75,7 +75,7 @@ def createTable(db, *camps, t_name="table") -> bool:
         db.commit()
         tables.append({"t_name": t_name, "camps": rows})
         cur.close()
-        return True
+        return t_name
     except Exception as e:
         print(e)
         return False

@@ -16,7 +16,7 @@ def start_db():
     db = dbm.createDatabase()  # Crear la base de datos
     ## <Tablas>
     #   Usuarios
-    dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True), dbm.createCamp("title", dbm.TXT),
+    TUsuarios = dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True), dbm.createCamp("title", dbm.TXT),
                     dbm.createCamp("name", dbm.TXT), dbm.createCamp("lnacimiento", dbm.INT),
                     dbm.createCamp("edad", dbm.INT), dbm.createCamp("raza", dbm.INT), dbm.createCamp("padre", dbm.INT),
                     dbm.createCamp("madre", dbm.INT), dbm.createCamp("sexo", dbm.INT),
@@ -58,7 +58,7 @@ def start_db():
                     dbm.createCamp("mano_izq", dbm.INT), dbm.createCamp("mano_der", dbm.INT),
                     dbm.createCamp("cuello", dbm.INT), dbm.createCamp("flechas", dbm.INT), t_name="Inventory")
     #   Players
-    dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True), dbm.createCamp("tusern", dbm.TXT),
+    dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True), dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE), dbm.createCamp("tusern", dbm.TXT),
                     dbm.createCamp("password", dbm.TXT), t_name="Players")
     ## </Tablas>
     return db

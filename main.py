@@ -16,17 +16,20 @@ def start_db():
     db = dbm.createDatabase()  # Crear la base de datos
     ## <Tablas>
     #   Usuarios
-    TUsuarios = dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True), dbm.createCamp("title", dbm.TXT),
-                    dbm.createCamp("name", dbm.TXT), dbm.createCamp("lnacimiento", dbm.INT),
-                    dbm.createCamp("edad", dbm.INT), dbm.createCamp("raza", dbm.INT), dbm.createCamp("padre", dbm.INT),
-                    dbm.createCamp("madre", dbm.INT), dbm.createCamp("sexo", dbm.INT),
-                    dbm.createCamp("renombre", dbm.INT), dbm.createCamp("nivel", dbm.INT),
-                    dbm.createCamp("vida", dbm.FLOAT), dbm.createCamp("mana", dbm.FLOAT),
-                    dbm.createCamp("mvida", dbm.INT), dbm.createCamp("mmana", dbm.INT), dbm.createCamp("xp", dbm.FLOAT),
-                    dbm.createCamp("heridas", dbm.INT), dbm.createCamp("bwin", dbm.INT),
-                    dbm.createCamp("blose", dbm.INT), dbm.createCamp("batallas", dbm.INT),
-                    dbm.createCamp("tierras", dbm.INT), dbm.createCamp("clan", dbm.INT),
-                    dbm.createCamp("home", dbm.INT), dbm.createCamp("live", dbm.INT), t_name="Usuarios")
+    TUsuarios = dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True),
+                                dbm.createCamp("title", dbm.TXT),
+                                dbm.createCamp("name", dbm.TXT), dbm.createCamp("lnacimiento", dbm.INT),
+                                dbm.createCamp("edad", dbm.INT), dbm.createCamp("raza", dbm.INT),
+                                dbm.createCamp("padre", dbm.INT),
+                                dbm.createCamp("madre", dbm.INT), dbm.createCamp("sexo", dbm.INT),
+                                dbm.createCamp("renombre", dbm.INT), dbm.createCamp("nivel", dbm.INT),
+                                dbm.createCamp("vida", dbm.FLOAT), dbm.createCamp("mana", dbm.FLOAT),
+                                dbm.createCamp("mvida", dbm.INT), dbm.createCamp("mmana", dbm.INT),
+                                dbm.createCamp("xp", dbm.FLOAT),
+                                dbm.createCamp("heridas", dbm.INT), dbm.createCamp("bwin", dbm.INT),
+                                dbm.createCamp("blose", dbm.INT), dbm.createCamp("batallas", dbm.INT),
+                                dbm.createCamp("tierras", dbm.INT), dbm.createCamp("clan", dbm.INT),
+                                dbm.createCamp("home", dbm.INT), dbm.createCamp("live", dbm.INT), t_name="Usuarios")
     #   Clanes
     dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True), dbm.createCamp("name", dbm.TXT),
                     dbm.createCamp("miembros", dbm.INT), t_name="Clanes")
@@ -58,7 +61,9 @@ def start_db():
                     dbm.createCamp("mano_izq", dbm.INT), dbm.createCamp("mano_der", dbm.INT),
                     dbm.createCamp("cuello", dbm.INT), dbm.createCamp("flechas", dbm.INT), t_name="Inventory")
     #   Players
-    dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True), dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE), dbm.createCamp("tusern", dbm.TXT),
+    dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True),
+                    dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE),
+                    dbm.createCamp("tusern", dbm.TXT),
                     dbm.createCamp("password", dbm.TXT), t_name="Players")
     ## </Tablas>
     return db

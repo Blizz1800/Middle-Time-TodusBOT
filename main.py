@@ -63,8 +63,7 @@ def start_db():
     #   Players
     dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True),
                     dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE),
-                    dbm.createCamp("tusern", dbm.TXT),
-                    dbm.createCamp("password", dbm.TXT), t_name="Players")
+                    dbm.createCamp("tusern", dbm.TXT), dbm.createCamp("password", dbm.TXT), t_name="Players")
     ## </Tablas>
     return db
 

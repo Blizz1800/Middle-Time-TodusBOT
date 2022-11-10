@@ -92,6 +92,7 @@ def createItems(db):
 def defaultData(db):
     u_user = users.createDUser(db, "Desconocido", 0)
     no_action = actions.createAction(db, "NO ACTION", 0)
+    
 
 def start(*argv):
     db = start_db()

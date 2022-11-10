@@ -27,6 +27,7 @@ def addTrigguer(trigguer: str, func, *args):
 
 
 class info:
+    APP: str
     HEAD: str
     USER: str
     MESSAGE: str
@@ -59,6 +60,7 @@ def reciveInfo(client: socket.socket):
             obj = json.loads(obj)  # Carga el objeto JSON
             inf = info()
             inf.HEAD = head
+            inf.APP = obj["messengerPackageName"]
             inf.USER = obj["query"]["sender"]
             inf.MESSAGE = obj["query"]["message"]
             inf.isGroup = obj["query"]["isGroup"]
@@ -72,7 +74,7 @@ def reciveInfo(client: socket.socket):
                 if obj["query"]["message"].split(' ')[0] == i["key"]:
                     trigguered = True
                     if i["args"] != ():
-                        i["action"](inf, i["args"])
+                        i["action"](inf, *i["args"])
                     else:
                         i["action"](inf)
                     break
@@ -80,7 +82,7 @@ def reciveInfo(client: socket.socket):
                     for t in trigguers:
                         if t["key"] == "*":
                             if i["args"] != ():
-                                t["action"](inf, i["args"])
+                                t["action"](inf, *i["args"])
                             else:
                                 t["action"](inf)
                             break
@@ -112,20 +114,21 @@ def server_start(startAt=("0.0.0.0", 8000)):
                 client, address = server.accept()
                 reciveInfo(client)
             except KeyboardInterrupt:
-                server.close()
+                break
     else:
         print(
             "need some trigguers\n\nadd them with addTrigguer('trigguer', function, fArgs)")
 
 
-trigguers = []#: list[dict[str, str | FunctionType, None | tuple]] = []
+trigguers: list[dict[str, str | FunctionType, None | tuple]] = [
+]
 
 
 def addResponse(response: str):
     messages.append({"message": response})
 
 
-def defaultStart(info: info, args: tuple[str, ] = ["Bienvenido {0}, esto es un mensaje de respuesta automatico!!\n\nLa API funciona con autoresponder, puede encontrar la libreria en https://github.com/blizz1800/pyresponder"]):
+def defaultStart(info: info, *argsstr = *["Bienvenido {0}, esto es un mensaje de respuesta automatico!!\n\nLa API funciona con autoresponder, puede encontrar la libreria en https://github.com/blizz1800/pyresponder"]):
     for i in args:
         txt = i.format(f"**{info.USER}**")
         messages.append({"message": txt})

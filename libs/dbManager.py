@@ -62,12 +62,14 @@ def createTable(db, *camps, t_name="table"):
             return False
         cmps = ""
         rows = ""
+        times = 0
         for i in camps:
             cmps += f"{i}"
             # if not "AUTOINCREMENT" in i:
             # rows += f"{i.split(' ')[0]}"
-            if i != camps[len(camps) - 1]:
+            if times != len(camps) - 1:
                 cmps += ", "
+                times += 1
                 # if not "AUTOINCREMENT" in i:
                 # rows += ", "
         query = f"CREATE TABLE IF NOT EXISTS {t_name}({cmps});"

@@ -128,7 +128,7 @@ def addResponse(response: str):
     messages.append({"message": response})
 
 
-def defaultStart(info: info, *argsstr):
+def defaultStart(info: info, *args):
     for i in args:
         txt = i.format(f"**{info.USER}**")
         messages.append({"message": txt})
@@ -139,6 +139,6 @@ def allResp(inf):
 if __name__ == '__main__':
     global gAddress
     gAddress = ("0.0.0.0", 8000)
-    addTrigguer("start", defaultStart)
+    addTrigguer("start", defaultStart, "Bienvenido {0}, esto es un mensaje de respuesta automatico!!\n\nLa API funciona con autoresponder, puede encontrar la libreria en https://github.com/blizz1800/pyresponder")
     addTrigguer("*", allResp)
     server_start(gAddress)

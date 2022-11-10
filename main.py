@@ -3,10 +3,9 @@ from sys import argv
 
 from dotenv import load_dotenv
 
+from Data import actions
 from Data import items
 from Data import users
-from Data import actions
-
 from libs import dbManager as dbm
 from libs import dialogHandler as dh
 from libs import pyresponder as pyr
@@ -16,6 +15,7 @@ PORT = int(getenv("PORT"))
 
 TODUS_P = getenv("TODUS_P")
 WHATSAPP_P = getenv("WHATS_P")
+
 
 def start_db():
     db = dbm.createDatabase()  # Crear la base de datos
@@ -67,7 +67,9 @@ def start_db():
                     dbm.createCamp("cuello", dbm.INT), dbm.createCamp("flechas", dbm.INT), t_name="Inventory")
     #   Players
     dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True),
-                    dbm.createCamp("tusern", dbm.TXT), dbm.createCamp("password", dbm.TXT), dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE), t_name="Players")
+                    dbm.createCamp("tusern", dbm.TXT), dbm.createCamp("password", dbm.TXT),
+                    dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE),
+                    t_name="Players")
     ## </Tablas>
     return db
 
@@ -89,6 +91,7 @@ def c_start(data: pyr.info):
 
 def createItems(db):
     Excaliburn = items.createItem(db, name="Excaliburn", desc="Espada sin filo")
+
 
 def defaultData(db):
     u_user = users.createDUser(db, "Desconocido", 0)

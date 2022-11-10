@@ -101,13 +101,16 @@ def insertData(db, table, rows, *data):
         tmp += f"`{i}`"
         if i != rows[len(rows) - 1]:
             tmp += ", "
+    times = 0
     for i in data:
         if type(i) is int or type(i) is float:
             tmp2 += f"{i}"
         else:
             tmp2 += f"'{i}'"
-        if i != data[len(data) - 1]:
+        if times != len(data) - 1:
             tmp2 += ", "
+            times += 1
+
     query = f"INSERT INTO {table} ({tmp}) VALUES ({tmp2});"
     cur.execute(query)
     db.commit()

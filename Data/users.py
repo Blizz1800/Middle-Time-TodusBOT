@@ -2,7 +2,7 @@ from libs import dbManager as dbm
 
 TPlayers = "Players"
 TABLA = "Usuarios"
-CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home"
+CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home, live"
 
 
 '''
@@ -14,7 +14,7 @@ def createDUser(db, name, sexo):
     madre = 0
     padre = 0
     edad = 0
-    raza = getUserByID(madre)[4]
+    raza = 0
     renombre = 0
     nivel = 1
     mvida = 100
@@ -23,12 +23,16 @@ def createDUser(db, name, sexo):
     vida = float(mvida)
     mana = float(mmana)
     xp = float(0)
-    heridas, bwin, blose, batallas, tierras = 0
-    clan = getUserByID(padre)[21]
+    heridas = 0
+    bwin = 0
+    blose = 0
+    batallas = 0
+    tierras = 0
+    clan = 0
     home = lnacimiento
-    data = (
-    title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas,
-    bwin, blose, batallas, tierras, clan, home)
+    live = 1
+    data = (title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas,
+    bwin, blose, batallas, tierras, clan, home, live)
     dbm.insertData(db, TABLA, CAMPS, *data)
     return getUserByName(db, name)
 
@@ -37,14 +41,14 @@ def createUser(db, name, lnacimiento, padre, madre, sexo, mvida, mmana):
         return getUserByName(db, name)
     title = ""
     edad = 0
-    raza = getUserByID(madre)[4]
+    raza = getUserByID(db, madre)[4]
     renombre = 0
     nivel = 1
     vida = float(mvida)
     mana = float(mmana)
     xp = float(0)
     heridas, bwin, blose, batallas, tierras = 0
-    clan = getUserByID(padre)[21]
+    clan = getUserByID(db, padre)[21]
     home = lnacimiento
     data = (title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home)
     dbm.insertData(db, TABLA, CAMPS, *data)

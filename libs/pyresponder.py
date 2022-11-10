@@ -120,7 +120,7 @@ def server_start(startAt=("0.0.0.0", 8000)):
             "need some trigguers\n\nadd them with addTrigguer('trigguer', function, fArgs)")
 
 
-trigguers: list[dict[str, str | FunctionType, None | tuple]] = [
+trigguers = [
 ]
 
 
@@ -128,7 +128,7 @@ def addResponse(response: str):
     messages.append({"message": response})
 
 
-def defaultStart(info: info, *argsstr = *["Bienvenido {0}, esto es un mensaje de respuesta automatico!!\n\nLa API funciona con autoresponder, puede encontrar la libreria en https://github.com/blizz1800/pyresponder"]):
+def defaultStart(info: info, *argsstr):
     for i in args:
         txt = i.format(f"**{info.USER}**")
         messages.append({"message": txt})

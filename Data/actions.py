@@ -8,7 +8,7 @@ def createAction(db, name:str, action:int, args:str = None):
         return getActionsByName(db, name)[0][0]
     # Sino la crea y añade a la base de datos devolviendo su ID
     dbm.insertData(db, TABLA, CAMPS, name, action, args)
-    print( getActionsByName(db, name))
+    return getActionsByName(db, name)[0][0]
 
 
 def getActions(db):

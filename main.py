@@ -4,6 +4,9 @@ from sys import argv
 from dotenv import load_dotenv
 
 from Data import items
+from Data import users
+from Data import actions
+
 from libs import dbManager as dbm
 from libs import dialogHandler as dh
 from libs import pyresponder as pyr
@@ -86,12 +89,16 @@ def c_start(data: pyr.info):
 def createItems(db):
     Excaliburn = items.createItem(db, name="Excaliburn", desc="Espada sin filo")
 
+def defaultData(db):
+    u_user = users.createDUser(db, "Desconocido", 0)
+    no_action = actions.createAction(db, "NO ACTION", 0)
 
 def start(*argv):
     db = start_db()
     # put more code here
     pyr.addTrigguer("start", c_start)
     createItems(db)  # Crea los items en la base de datos
+    defaultData(db)  # Crea las entradas default de la BD
     strartAt = ("0.0.0.0", PORT)
     # pyr.server_start(strartAt)
     db.close()

@@ -14,6 +14,8 @@ from libs import pyresponder as pyr
 load_dotenv()
 PORT = int(getenv("PORT"))
 
+TODUS_P = getenv("TODUS_P")
+WHATSAPP_P = getenv("WHATS_P")
 
 def start_db():
     db = dbm.createDatabase()  # Crear la base de datos
@@ -74,9 +76,9 @@ def start_db():
 def c_start(data: pyr.info):
     resp = "start"
     file = "start"
-    if data.HEAD == "/todus":
+    if data.APP == TODUS_P:
         ext = "tds"
-    elif data.HEAD == "/whatsapp":
+    elif data.APP == WHATSAPP_P:
         ext = "wht"
     else:
         ext = "raw"
@@ -92,7 +94,7 @@ def createItems(db):
 def defaultData(db):
     u_user = users.createDUser(db, "Desconocido", 0)
     no_action = actions.createAction(db, "NO ACTION", 0)
-    
+
 
 def start(*argv):
     db = start_db()

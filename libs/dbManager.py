@@ -34,7 +34,7 @@ def makeForeign(camp, refTable, ref, onDelete="", onUpdate=""):
     value = f"FOREIGN KEY({camp}) REFERENCES {refTable}({ref}) {onDelete} {onUpdate}"
     return value
 
-def createDatabase(name="database.db") -> sqlite3.Connection | int:
+def createDatabase(name="database.db"):
     '''
     Crea una base de datos en el directorio actual o se conecta a ella.
     :param name: (Opcional) Nombre de la base de datos.
@@ -48,7 +48,7 @@ def createDatabase(name="database.db") -> sqlite3.Connection | int:
         return 0
 
 
-def createTable(db, *camps, t_name="table") -> bool | str:
+def createTable(db, *camps, t_name="table"):
     '''
     Crea una tabla nueva si no existe.
     :param db: La base de datos a la q se le hara la consulta.

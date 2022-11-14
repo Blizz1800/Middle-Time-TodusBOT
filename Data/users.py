@@ -47,7 +47,11 @@ def createUser(db, name, lnacimiento, padre, madre, sexo, mvida, mmana):
     vida = float(mvida)
     mana = float(mmana)
     xp = float(0)
-    heridas, bwin, blose, batallas, tierras = 0
+    heridas = 0
+    bwin = 0
+    blose = 0
+    batallas = 0
+    tierras = 0
     clan = getUserByID(db, padre)[21]
     home = lnacimiento
     data = (title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home)
@@ -81,7 +85,7 @@ def getUsersByFID(db, id:int, many=0):
 def getDecendants(db, id:int, many=0):
     users = getUsers(db)
     descendants = []
-    self = getUserByID(id)[8]
+    self = getUserByID(db, id)[8]
     if self == 1:
         sex = 6
     else:

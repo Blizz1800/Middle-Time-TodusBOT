@@ -4,11 +4,6 @@ TPlayers = "Players"
 TABLA = "Usuarios"
 CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home, live"
 
-
-'''
-    Falta añadir la funcion para crear users
-'''
-
 def createDUser(db, name, sexo):
     title = ""
     madre = 0

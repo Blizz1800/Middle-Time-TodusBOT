@@ -1,8 +1,10 @@
 from libs import dbManager as dbm
 from Data import users
 import hashlib
+from random import randrange
 
-
+TABLE = "Borns"
+CAMPS = "padre, madre, key, childs"
 
 def generateBorn(db, idPadre, idMadre):
     key = ""
@@ -13,7 +15,16 @@ def generateBorn(db, idPadre, idMadre):
     dPadre = sha256(f"{nPadre}:{idPadre}")
     dMadre = sha256(f"{nMadre}:{idMadre}")
     key = md5(f"[{dPadre}]:[{dMadre}]")
-    return key
+    key = md5(sha256(md5(f"{key}//{randrange(1,1000000)}")))
+    prob = randrange(0, 100)
+    if prob <= 80:
+        childs = 1
+    elif prob <= 98:
+        childs = 2
+    else:
+        childs = 3
+    dbm.insertData(db, TABLE, CAMPS, idPadre, idMadre, key, childs)
+    return
 
 
 def sha256(txt:str):

@@ -75,7 +75,6 @@ def start_db():
 
 
 def c_start(data: pyr.info):
-    resp = "start"
     file = "start"
     if data.APP == TODUS_P:
         ext = "tds"
@@ -92,8 +91,8 @@ def createItems(db):
 
 
 def defaultData(db):
-    u_user = users.createDUser(db, "Desconocido", 0)
-    no_action = actions.createAction(db, "NO ACTION", 0)
+    u_user = users.createDUser(db, "Desconocido", 0)        #Unknown user
+    no_action = actions.createAction(db, "NO ACTION", 0)    #No action
 
 
 def start(*argv):

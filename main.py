@@ -106,9 +106,10 @@ def start(*argv):
     pyr.addTrigguer("start", c_start)
     createItems(db)  # Crea los items en la base de datos
     defaultData(db)  # Crea las entradas default de la BD
-    strartAt = ("0.0.0.0", PORT)
-    # pyr.server_start(strartAt)
-    db.close()
+    strartAt = ("0.0.0.0", PORT) # Direccion de alojamiento del socket
+    # pyr.server_start(strartAt) # Inicia el servidor
+    db.close()  # Cierra la DB
+    # Despues de q el server se detiene
 
 
 if __name__ == "__main__":

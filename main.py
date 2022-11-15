@@ -74,15 +74,20 @@ def start_db():
     return db
 
 
+def ext(app: str):
+    if app == TODUS_P:
+        extn = "tds"
+    elif app == WHATSAPP_P:
+        extn = "wht"
+    else:
+        extn = "raw"
+    return extn
+
+
 def c_start(data: pyr.info):
     file = "start"
-    if data.APP == TODUS_P:
-        ext = "tds"
-    elif data.APP == WHATSAPP_P:
-        ext = "wht"
-    else:
-        ext = "raw"
-    resp = dh.generateDialog(f"./Dialogs/{file}.{ext}", data.USER)
+
+    resp = dh.generateDialog(f"./Dialogs/{file}.{ext(data.APP)}", data.USER)
     pyr.addResponse(resp)
 
 
@@ -91,8 +96,8 @@ def createItems(db):
 
 
 def defaultData(db):
-    u_user = users.createDUser(db, "Desconocido", 0)        #Unknown user
-    no_action = actions.createAction(db, "NO ACTION", 0)    #No action
+    u_user = users.createDUser(db, "Desconocido", 0)  # Unknown user
+    no_action = actions.createAction(db, "NO ACTION", 0)  # No action
 
 
 def start(*argv):

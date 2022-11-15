@@ -5,6 +5,8 @@ TABLA = "Usuarios"
 CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home, live"
 
 def createDUser(db, name, sexo):
+    if len(getUserByName(db, name)) > 0:
+        return getUserByName(db, name)
     title = ""
     madre = 0
     padre = 0

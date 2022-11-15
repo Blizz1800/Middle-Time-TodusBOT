@@ -70,6 +70,13 @@ def start_db():
                     dbm.createCamp("tusern", dbm.TXT), dbm.createCamp("password", dbm.TXT),
                     dbm.makeForeign("id", TUsuarios, "id", onDelete=dbm.CASCADE, onUpdate=dbm.CASCADE),
                     t_name="Players")
+    #   Borns
+    dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True),
+                    dbm.createCamp("padre", dbm.INT, default=0), dbm.createCamp("madre", dbm.INT, default=0),
+                    dbm.createCamp("key", dbm.TXT), dbm.createCamp("childs", dbm.INT),
+                    dbm.makeForeign("padre", "Usuarios", "id", onDelete=dbm.SET_DEF, onUpdate=dbm.CASCADE),
+                    dbm.makeForeign("padre", "Usuarios", "id", onDelete=dbm.SET_DEF, onUpdate=dbm.CASCADE),
+                    t_name="Borns")
     ## </Tablas>
     return db
 
@@ -106,7 +113,7 @@ def start(*argv):
     pyr.addTrigguer("start", c_start)
     createItems(db)  # Crea los items en la base de datos
     defaultData(db)  # Crea las entradas default de la BD
-    strartAt = ("0.0.0.0", PORT) # Direccion de alojamiento del socket
+    strartAt = ("0.0.0.0", PORT)  # Direccion de alojamiento del socket
     # pyr.server_start(strartAt) # Inicia el servidor
     db.close()  # Cierra la DB
     # Despues de q el server se detiene

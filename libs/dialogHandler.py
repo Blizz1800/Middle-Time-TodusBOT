@@ -1,4 +1,3 @@
-
 def generateDialog(file, *subs):
     dialog = ""
     file = open(file, 'rb')

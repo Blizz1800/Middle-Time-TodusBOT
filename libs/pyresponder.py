@@ -1,11 +1,11 @@
 import json
 import socket
-from types import FunctionType
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-#messages = [{"message": "Message 1"}]
+# messages = [{"message": "Message 1"}]
 messages = []
+
 
 #   Create a trigguer in db trigguers
 def addTrigguer(trigguer: str, func, *args):
@@ -37,11 +37,10 @@ class info:
 
 
 def reciveInfo(client: socket.socket):
-
     while True:
         try:
-            DATA = client.recv(1024*8).decode('utf8')
-            #print(type(DATA), DATA)
+            DATA = client.recv(1024 * 8).decode('utf8')
+            # print(type(DATA), DATA)
             obj = ""
             head = ""
             headers = []
@@ -52,7 +51,7 @@ def reciveInfo(client: socket.socket):
                 elif i.startswith("POST "):
                     i = i.split(' ')
                     head = i[1]
-                elif i == "\n" or i=="":
+                elif i == "\n" or i == "":
                     continue
                 else:
                     i = i.split(': ')
@@ -90,7 +89,8 @@ def reciveInfo(client: socket.socket):
             data = str(responseBase)
             # print(data)
             client.send(
-                f"HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nContent-Type: application/json; charset=UTF-8\r\nAccess-Control-Allow-Methods: POST\r\nAccess-Control-Max-Age: 3600\r\nAccess-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With\r\n\n{data}".encode('utf8'))
+                f"HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nContent-Type: application/json; charset=UTF-8\r\nAccess-Control-Allow-Methods: POST\r\nAccess-Control-Max-Age: 3600\r\nAccess-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With\r\n\n{data}".encode(
+                    'utf8'))
             client.close()
             break
         except ConnectionResetError:
@@ -133,12 +133,15 @@ def defaultStart(info: info, *args):
         txt = i.format(f"**{info.USER}**")
         messages.append({"message": txt})
 
+
 def allResp(inf):
     addResponse("Has dicho: \n\"{0}\"".format(inf.MESSAGE))
+
 
 if __name__ == '__main__':
     global gAddress
     gAddress = ("0.0.0.0", 8000)
-    addTrigguer("start", defaultStart, "Bienvenido {0}, esto es un mensaje de respuesta automatico!!\n\nLa API funciona con autoresponder, puede encontrar la libreria en https://github.com/blizz1800/pyresponder")
+    addTrigguer("start", defaultStart,
+                "Bienvenido {0}, esto es un mensaje de respuesta automatico!!\n\nLa API funciona con autoresponder, puede encontrar la libreria en https://github.com/blizz1800/pyresponder")
     addTrigguer("*", allResp)
     server_start(gAddress)

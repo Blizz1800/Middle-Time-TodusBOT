@@ -4,9 +4,9 @@ from sys import argv
 from dotenv import load_dotenv
 
 from Data import actions
+from Data import borns
 from Data import items
 from Data import users
-from Data import borns
 from libs import dbManager as dbm
 from libs import dialogHandler as dh
 from libs import pyresponder as pyr
@@ -107,7 +107,6 @@ def defaultData(db):
     u_user = users.createDUser(db, "Desconocido", 0)  # Unknown user
     no_action = actions.createAction(db, "NO ACTION", 0)  # No action
     borns.generateBorn(db, 1, 1)
-    
 
 
 def start(*argv):

@@ -83,9 +83,7 @@ def c_start(data: pyr.info):
         ext = "wht"
     else:
         ext = "raw"
-    info = []
-    info.append(data.USER)
-    resp = dh.generateDialog(f"./Dialogs/{file}.{ext}", *info)
+    resp = dh.generateDialog(f"./Dialogs/{file}.{ext}", data.USER)
     pyr.addResponse(resp)
 
 

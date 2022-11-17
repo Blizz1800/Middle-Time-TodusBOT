@@ -111,9 +111,11 @@ def defaultData(db):
 
 def start(*argv):
     db = start_db()
+    borns.clearKeys(db)
     # put more code here
     pyr.addTrigguer("start", c_start)
     createItems(db)  # Crea los items en la base de datos
+    itemList = items.loadItems(db) # Carga los items en una lista
     defaultData(db)  # Crea las entradas default de la BD
     strartAt = ("0.0.0.0", PORT)  # Direccion de alojamiento del socket
     # pyr.server_start(strartAt) # Inicia el servidor

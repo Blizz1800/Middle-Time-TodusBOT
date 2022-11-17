@@ -136,6 +136,7 @@ def getData(db, tabla, row="*", extra: str = None, many=0):
     cur: sqlite3.Cursor = db.cursor()
     cur.execute(query)
     content = cur.fetchall()
+    cur.close()
     if len(content) > 0:
         if many != 0:
             data = []
@@ -156,4 +157,11 @@ def updateData(db, tabla, condition, row, value):
         tp = ""
     query = f"UPDATE {tabla} SET `{row}`={tp}{value}{tp} WHERE {condition}"
     cur.execute(query)
+    cur.close()
     return True
+
+
+def dropData(db, tabla, condition):
+    cur = db.cursor()
+    query = f"DROP * FROM {tabla} WHERE {condition}"
+    cur.close()

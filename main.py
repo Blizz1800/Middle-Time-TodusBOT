@@ -92,11 +92,27 @@ def ext(app: str):
     return extn
 
 
-def c_start(data: pyr.info):
-    file = "start"
+def createResp(file, appPackage, *formatData):
+    return dh.generateDialog(f"./Dialogs/{file}.{ext(appPackage)}", *formatData)
 
-    resp = dh.generateDialog(f"./Dialogs/{file}.{ext(data.APP)}", data.USER)
+
+def c_start(data: pyr.info):
+    resp = createResp("start", data.APP, data.USER)
     pyr.addResponse(resp)
+
+
+def c_born(data: pyr.info, db):
+    msg = data.MESSAGE.split(' ')
+    if len(msg) != 2:
+        pyr.addResponse(createResp("born_fail", data.APP))
+        return
+    born = borns.findBorn(db, msg[1])
+    if born is not None:
+        pyr.addResponse(createResp("born_success", data.APP))
+        borns.reduceByOne(db, born[0])
+        borns.clearKeys(db)
+
+
 
 
 def createItems(db):
@@ -114,6 +130,7 @@ def start(*argv):
     borns.clearKeys(db)
     # put more code here
     pyr.addTrigguer("start", c_start)
+    pyr.addTrigguer("born", c_born, db)
     createItems(db)  # Crea los items en la base de datos
     itemList = items.loadItems(db) # Carga los items en una lista
     defaultData(db)  # Crea las entradas default de la BD

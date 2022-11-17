@@ -161,7 +161,7 @@ def updateData(db, tabla, condition, row, value):
     return True
 
 
-def dropData(db, tabla, condition):
+def deleteData(db, tabla, condition):
     cur = db.cursor()
     query = f"DELETE FROM {tabla} WHERE {condition}"
     cur.execute(query)

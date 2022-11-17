@@ -36,7 +36,7 @@ def getKeys(db, id: int):
 
 
 def clearKeys(db):
-    dbm.dropData(db, TABLE, "`childs`=0")
+    dbm.deleteData(db, TABLE, "`childs`=0")
 
 
 def sha256(txt: str):

@@ -31,8 +31,13 @@ def generateBorn(db, idPadre, idMadre, childs=0):
     return
 
 
-def getKeys(db, id):
-    return dbm.getData(db, TABLE, CAMPS, f"`padre`={id} OR `madre`={id}", 0)
+def getKeys(db, id: int):
+    return dbm.getData(db, TABLE, CAMPS, f"`padre`={id} OR `madre`={id}")
+
+
+def clearKeys(db):
+    dbm.dropData(db, TABLE, "`childs`=0")
+
 
 def sha256(txt: str):
     txt = txt.encode('utf-8')

@@ -118,7 +118,7 @@ def start(*argv):
     itemList = items.loadItems(db) # Carga los items en una lista
     defaultData(db)  # Crea las entradas default de la BD
     strartAt = ("0.0.0.0", PORT)  # Direccion de alojamiento del socket
-    # pyr.server_start(strartAt) # Inicia el servidor
+    pyr.server_start(strartAt) # Inicia el servidor
     db.close()  # Cierra la DB
     # Despues de q el server se detiene
 

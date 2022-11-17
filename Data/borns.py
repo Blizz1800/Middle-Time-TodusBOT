@@ -31,6 +31,15 @@ def generateBorn(db, idPadre, idMadre, childs=0):
     return
 
 
+def reduceByOne(db, id):
+    fila = dbm.getData(db, TABLE, CAMPS, f'`id`={id}', many=1)
+    dbm.updateData(db, TABLE, f"`id`={id}", "childs", fila[len(fila-1)]-1)
+
+
+def findBorn(db, key):
+    return dbm.getData(db, TABLE, CAMPS, f"`key`='{key}'", many=1)
+
+
 def getKeys(db, id: int):
     return dbm.getData(db, TABLE, CAMPS, f"`padre`={id} OR `madre`={id}")
 

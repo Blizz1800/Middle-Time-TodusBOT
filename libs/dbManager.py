@@ -163,6 +163,6 @@ def updateData(db, tabla, condition, row, value):
 
 def dropData(db, tabla, condition):
     cur = db.cursor()
-    query = f"DROP * FROM {tabla} WHERE {condition}"
+    query = f"DELETE FROM {tabla} WHERE {condition}"
     cur.execute(query)
     cur.close()

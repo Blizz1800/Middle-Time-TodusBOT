@@ -3,6 +3,7 @@ from libs import dbManager as dbm
 TABLA = "Items"
 CAMPS = "name, desc, action"
 
+items = []
 
 def createItem(db, name: str, desc: str, action: int = 0):
     if len(getItemByName(db, name)) != 0:  # Si el item ya existe, devuelve su ID
@@ -22,3 +23,13 @@ def getItemByID(db, id: int, many=1):
 
 def getItemByName(db, name: str, many=1):
     return dbm.getData(db, TABLA, extra=f"`name`='{name}'", many=many)
+
+
+def loadItems(db):
+    for i in getItems(db):
+        items.append(
+            {
+                f"{i[0]}": i
+            }
+        )
+    return items

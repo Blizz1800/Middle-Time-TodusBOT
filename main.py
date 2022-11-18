@@ -35,7 +35,8 @@ def start_db():
                                 dbm.createCamp("heridas", dbm.INT), dbm.createCamp("bwin", dbm.INT),
                                 dbm.createCamp("blose", dbm.INT), dbm.createCamp("batallas", dbm.INT),
                                 dbm.createCamp("tierras", dbm.INT), dbm.createCamp("clan", dbm.INT),
-                                dbm.createCamp("home", dbm.INT), dbm.createCamp("live", dbm.INT), t_name="Usuarios")
+                                dbm.createCamp("home", dbm.INT), dbm.createCamp("live", dbm.INT),
+                                dbm.createCamp("lugar", dbm.INT), t_name="Usuarios")
     #   Clanes
     dbm.createTable(db, dbm.createCamp("id", dbm.INT, primary=True, ai=True), dbm.createCamp("name", dbm.TXT),
                     dbm.createCamp("miembros", dbm.INT), t_name="Clanes")
@@ -111,6 +112,11 @@ def c_born(data: pyr.info, db):
         pyr.addResponse(createResp("born_success", data.APP))
         borns.reduceByOne(db, born[0])
         borns.clearKeys(db)
+        father = users.getUserByID(db, born[1])
+        mother = users.getUserByID(db, born[2])
+        mvida = father[len(father)-12] * 5 / 100
+        mmana = mother[len(mother)-11] * 5 / 100
+        users.createUser(db, data.USER, father[len(father)-1], born[1], born[2], -1, mvida, mmana)
 
 def c_global(data: pyr.info, db):
     if data.HEAD == "/u_name":

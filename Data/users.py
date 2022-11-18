@@ -2,7 +2,7 @@ from libs import dbManager as dbm
 
 TPlayers = "Players"
 TABLA = "Usuarios"
-CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home, live"
+CAMPS = "title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp, heridas, bwin, blose, batallas, tierras, clan, home, live, lugar"
 
 
 def createDUser(db, name, sexo):
@@ -32,7 +32,7 @@ def createDUser(db, name, sexo):
     data = (
         title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp,
         heridas,
-        bwin, blose, batallas, tierras, clan, home, live)
+        bwin, blose, batallas, tierras, clan, home, live, lnacimiento)
     dbm.insertData(db, TABLA, CAMPS, *data)
     return getUserByName(db, name)
 
@@ -58,7 +58,7 @@ def createUser(db, name, lnacimiento, padre, madre, sexo, mvida, mmana):
     data = (
         title, name, lnacimiento, edad, raza, padre, madre, sexo, renombre, nivel, vida, mana, mvida, mmana, xp,
         heridas,
-        bwin, blose, batallas, tierras, clan, home)
+        bwin, blose, batallas, tierras, clan, home, lnacimiento)
     dbm.insertData(db, TABLA, CAMPS, *data)
     return getUserByName(db, name)
 

@@ -112,8 +112,11 @@ def c_born(data: pyr.info, db):
         borns.reduceByOne(db, born[0])
         borns.clearKeys(db)
 
-
-
+def c_global(data: pyr.info, db):
+    if data.HEAD == "/u_name":
+        pass    # Define el Username del player
+    else:
+        pyr.addResponse(f"No se esperaba: {data.MESSAGE}")
 
 def createItems(db):
     Excaliburn = items.createItem(db, name="Excaliburn", desc="Espada sin filo")
@@ -131,6 +134,7 @@ def start(*argv):
     # put more code here
     pyr.addTrigguer("start", c_start)
     pyr.addTrigguer("born", c_born, db)
+    pyr.addTrigguer("*", c_global, db)
     createItems(db)  # Crea los items en la base de datos
     itemList = items.loadItems(db) # Carga los items en una lista
     defaultData(db)  # Crea las entradas default de la BD
